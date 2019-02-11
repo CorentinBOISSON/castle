@@ -10,7 +10,7 @@ var scraping = 0;
 
 function createPromise() {
     let url = 'https://www.relaischateaux.com/fr/site-map/etablissements'
-    promiseList.push(ListesRC(/*proxyUrl + */url));
+    PromiseList.push(ListesRC(/*proxyUrl + */url));
 }
 
 function ListesRC(url) {
