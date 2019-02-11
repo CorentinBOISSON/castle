@@ -36,7 +36,7 @@ function ListesRC(url) {
                 name = name.replace(/\n/g, "");
                 let chefname = String(data.find('a:contains("Chef")').text().split(' - ')[1]);
                 chefname = chefname.replace(/\n/g, "");
-                hotelsList.push({ "name": name.trim(), "postalCode": "", "chef": chefname.trim(), "url": url, "price": "" })
+                ListeRelaisetChateau.push({ "name": name.trim(), "postalCode": "", "chef": chefname.trim(), "url": url, "price": "" })
             })
             resolve(ListeRelaisetChateau);
         });
@@ -114,7 +114,7 @@ function ToJson() {
 }
 
 createPromise();
-var prom = promiseList[0];
+var prom = PromiseList[0];
 prom
     .then(createIndividualPromises)
     .then(() => { return Promise.all(indivPromisesList); })
