@@ -10,7 +10,37 @@ var scraping = 0;
 
 function createPromise() {
     let url = 'https://www.relaischateaux.com/fr/site-map/etablissements'
-    promiseList.push(fillHotelsList(/*proxyUrl + */url));
+    promiseList.push(ListesRC(/*proxyUrl + */url));
+}
+
+function ListesRC(url) {
+    return new Promise(function (resolve, reject) {
+        request(url, function (err, res, html) {
+            if (err) {
+                console.log(err)
+                return reject(err);
+            }
+            else if (res.statusCode !== 200) {
+                err = new Error("Unexpected status code : " + res.statusCode);
+                err.res = res;
+                return reject(err);
+            }
+            var $ = cheerio.load(html);
+
+            let hotelsFrance = $('h3:contains("France")').next();
+            hotelsFrance.find('li').length
+            hotelsFrance.find('li').each(function () {
+                let data = $(this);
+                let url = String(data.find('a').attr("href"));
+                let name = data.find('a').first().text();
+                name = name.replace(/\n/g, "");
+                let chefname = String(data.find('a:contains("Chef")').text().split(' - ')[1]);
+                chefname = chefname.replace(/\n/g, "");
+                hotelsList.push({ "name": name.trim(), "postalCode": "", "chef": chefname.trim(), "url": url, "price": "" })
+            })
+            resolve(hotelsList);
+        });
+    });
 }
 
 function createIndividualPromises() {
@@ -34,3 +64,4 @@ function createIndividualPromises() {
         }
     })
 }
+
