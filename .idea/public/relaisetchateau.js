@@ -1,9 +1,9 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var fs = require('fs');
+var Promise = require('promise');
 
-request('https://www.relaischateaux.com/fr/', function (error, response, html) {
-    if (!error && response.statusCode == 200) {
-        console.log(html);
-    }
-});
-
+var PromiseList = [];
+var indivPromisesList = [];
+var ListeRelaisetChateau = [];
+var scraping = 0;
