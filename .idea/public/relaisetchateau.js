@@ -112,3 +112,22 @@ function ToJson() {
         resolve();
     });
 }
+
+createPromise();
+var prom = promiseList[0];
+prom
+    .then(createIndividualPromises)
+    .then(() => { return Promise.all(indivPromisesList); })
+    .then(createIndividualPromises)
+    .then(() => { return Promise.all(indivPromisesList); })
+    .then(ToJson)
+
+
+module.exports.getHotelsJSON = function () {
+    fs.readFile("relaisetchateau.json", 'utf8', function doneReading(error, data) {
+        if (error) { return console.error(error) }
+        console.log(JSON.parse(data));
+        return JSON.parse(fs.readFileSync("RelaisChateaux.json"));
+    });}
+
+
