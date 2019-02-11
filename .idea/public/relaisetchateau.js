@@ -98,3 +98,17 @@ function infos(url, index) {
     });
 }
 
+function ToJson() {
+    return new Promise(function (resolve, reject) {
+        try {
+            var jsonHotels = JSON.stringify(ListeRelaisetChateau);
+            fs.writeFile("RelaisChateaux.json", jsonHotels, function doneWriting(err) {
+                if (err) { console.log(err); }
+            });
+        }
+        catch (error) {
+            console.error(error);
+        }
+        resolve();
+    });
+}
