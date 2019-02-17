@@ -56,7 +56,7 @@ function createIndividualPromises() {
             for (i = ListeMichelin.length / 2; i < ListeMichelin.length; i++) {
                 let restaurantURL = ListeMichelin[i].url;
                 indivPromisesList.push(Infos(/*proxyUrl + */restaurantURL, i));
-                console.log("Added url of " + i + "th restaurant to the promises list");
+
             }
             resolve();
         }
@@ -127,14 +127,10 @@ Promise.all(PromiseList)
     .then(ToJson)
 
 
+
 module.exports.getRestaurantsJSON = function () {
-    fs.readFile("relaisetchateau.json", 'utf8', function doneReading(error, data) {
-        if (error) { return console.error(error) }
-        console.log(JSON.parse(data));;
-        return JSON.parse(fs.readFileSync("RestaurantsMichelin.json"));
-    });}
-
-
+    return JSON.parse(fs.readFileSync("RestaurantsMichelin.json"));
+};
 
 
 

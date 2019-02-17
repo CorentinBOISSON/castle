@@ -124,10 +124,5 @@ prom
 
 
 module.exports.getHotelsJSON = function () {
-    fs.readFile("relaisetchateau.json", 'utf8', function doneReading(error, data) {
-        if (error) { return console.error(error) }
-        console.log(JSON.parse(data));
-        return JSON.parse(fs.readFileSync("RelaisChateaux.json"));
-    });}
-
-
+    return JSON.parse(fs.readFileSync("RelaisChateaux.json"));
+};
