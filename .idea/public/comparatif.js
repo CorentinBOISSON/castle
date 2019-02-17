@@ -5,7 +5,6 @@ var fs = require('fs');
 
 
 'use strict';
-console.log("debut");
 
 const hotelsJSON = relaisetchateau.getHotelsJSON();
 const michelinJSON = michelin.getRestaurantsJSON();
@@ -24,6 +23,3 @@ function findMutualChefsAndPCs(hotelsList, michelinsList) {
     return starredHotels;
 }
 
-
-
-console.log("fin");
