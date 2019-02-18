@@ -50,7 +50,7 @@
     $(document).ready(function() {
         $('#lecture').on('click', function(){
             $.getJSON("RelaisetChateauEtoiles.json", function(result){
-                //result = $(result).sort(sortByPrice);
+
                 var items = [];
 
                 $.each(result, function(key, val){
